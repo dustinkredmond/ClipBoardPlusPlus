@@ -32,7 +32,7 @@ public class I18N {
                 "To get started, you can add a new clip via the \"New\" button or by directly pasting text into " +
                 "the table. Clips can be copied again later via Ctrl+C or by double clicking the table item." +
                 "\n\n\n" +
-                "https://github.com/dustinkredmond/clipboard++\n" +
+                "https://github.com/dustinkredmond/ClipBoardPlusPlus\n" +
                 "Created By: Dustin K. Redmond\n" +
                 "Email: dustin@dustinredmond.com");
         map.put("option.new", "New");
@@ -60,6 +60,19 @@ public class I18N {
         map.put("table.notes", "Notes");
         map.put("table.empty", "No clipboard items saved. Either add with \"New\" button, or Paste (Ctrl+V) into table.");
 
+        // MenuItems
+        map.put("mi.about", "About this program");
+        map.put("mi.help", "Help");
+
+        // About menu
+        map.put("mi.about.content", "ClipBoard++ is created under the GNU General Public License V3.0\n\n" +
+                "https://github.com/dustinkredmond/ClipBoardPlusPlus\nCreated: " +
+                "2020-05-20 by Dustin K. Redmond");
+
+        // Help menu
+        map.put("mi.help.content", "ClipBoard++ is created in such a way that its use should be very straightforward. " +
+                "If you run into any issues, please file an Issue or submit a Pull Request on the GitHub page.\n" +
+                "\nhttps://github.com/dustinkredmond/ClipBoardPlusPlus");
         return map;
     }
 

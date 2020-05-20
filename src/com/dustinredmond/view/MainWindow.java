@@ -1,20 +1,20 @@
 package com.dustinredmond.view;
 
+import com.dustinredmond.controller.MainMenuController;
 import com.dustinredmond.controller.MainWindowController;
 import com.dustinredmond.controller.ObjectTable;
 import com.dustinredmond.i18n.I18N;
 import com.dustinredmond.model.Clip;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
 
-import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -28,12 +28,15 @@ public class MainWindow implements Window {
         stage.getIcons().add(new Image("icons8-clipboard-64.png"));
         stage.setTitle(I18N.get("application.title"));
 
+        BorderPane root = new BorderPane();
         GridPane grid = new GridPane();
+        root.setCenter(grid);
+        root.setTop(getMainMenu());
         grid.setPadding(new Insets(10));
         grid.setVgap(10);
         grid.setHgap(10);
 
-        Scene scene = new Scene(grid, 600, 400);
+        Scene scene = new Scene(root, 600, 400);
         createControls(grid, scene);
 
         stage.setScene(scene);
@@ -89,6 +92,21 @@ public class MainWindow implements Window {
         map.put("clip",I18N.get("table.clip"));
         map.put("notes",I18N.get("table.notes"));
         return map;
+    }
+
+    private MenuBar getMainMenu() {
+        MenuBar menuBar = new MenuBar();
+
+        Menu menuAbout = new Menu("About");
+        MenuItem menuItemAbout = new MenuItem(I18N.get("mi.about"));
+        menuItemAbout.setOnAction(e -> new MainMenuController().showAboutInfo());
+        MenuItem menuItemHelp = new MenuItem(I18N.get("mi.help"));
+        menuItemHelp.setOnAction(e -> new MainMenuController().showHelpInfo());
+        menuAbout.getItems().addAll(menuItemAbout, menuItemHelp);
+
+        menuBar.getMenus().add(menuAbout);
+
+        return menuBar;
     }
 
     public static ObjectTable<Clip> getTable() { return table; }
