@@ -10,6 +10,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.input.Clipboard;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
 
 public class CreateNewWindow implements Window {
@@ -26,6 +27,9 @@ public class CreateNewWindow implements Window {
 
         TextArea taClip = new TextArea(Clipboard.getSystemClipboard().getString());
         TextArea taNotes = new TextArea();
+
+        GridPane.setHgrow(taClip, Priority.ALWAYS);
+        GridPane.setVgrow(taClip, Priority.ALWAYS);
 
         grid.add(new Label(I18N.get("new.contents")), 0, 0);
         grid.add(taClip, 1, 0);
