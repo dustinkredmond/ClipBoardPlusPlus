@@ -54,6 +54,7 @@ public class EditWindow implements Window {
         buttonSave.setOnAction(e -> {
             currentClip.setNotes(taNotes.getText());
             currentClip.setClip(taClipboardContents.getText());
+            table.refresh(); // must force update for fields to change
             stage.hide();
         });
 
