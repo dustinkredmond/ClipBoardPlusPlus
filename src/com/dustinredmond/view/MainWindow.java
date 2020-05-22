@@ -54,7 +54,7 @@ public class MainWindow implements Window {
 
         table.excludeColumn("SDF"); // property SimpleDateFormat (not needed in model)
         table.setPlaceholder(new Label(I18N.get("table.empty")));
-        table.setFixedCellSize(20);
+        table.setFixedCellSize(25);
         table.applyColumnNameMapping(getColumnMapping());
         initializeItems();
 
