@@ -5,22 +5,30 @@ import java.util.Locale;
 
 /**
  * TODO: Add translations for locales other than en-US
+ * other languages should have their own map and should be 
+ * added to the get method below
  */
 public class I18N {
+
+    /**
+     * Determine the Locale of the user and return
+     * a localized String given the key
+     * @param key Key for translation lookup
+     * @return localized version of String
+     */
     public static String get(String key) {
 
         Locale currentLocale = Locale.getDefault();
         String language = currentLocale.getLanguage();
-        if (language.equals(new Locale("en").getLanguage())) {
+        if (language.equals(new Locale("en").getLanguage())) { // don't compare String values per Java docs
             return americanEnglish().get(key);
         } else {
             System.out.printf("Language: %s | No matching translation for text key: %s\n", language, key);
-            // as default, better than no Strings at all
+            // as default use English, better than no Strings at all
             return americanEnglish().get(key);
         }
     }
 
-    // NOTE: Each language group will have corresponding map
     private static HashMap<String,String> americanEnglish() {
         HashMap<String,String> map = new HashMap<>();
 
@@ -65,7 +73,7 @@ public class I18N {
         map.put("mi.help", "Help");
 
         // About menu
-        map.put("mi.about.content", "ClipBoard++ is created under the GNU General Public License V3.0\n\n" +
+        map.put("mi.about.content", "ClipBoard++ is licensed under the GNU General Public License V3.0\n\n" +
                 "https://github.com/dustinkredmond/ClipBoardPlusPlus\nCreated: " +
                 "2020-05-20 by Dustin K. Redmond");
 
@@ -75,6 +83,4 @@ public class I18N {
                 "\nhttps://github.com/dustinkredmond/ClipBoardPlusPlus");
         return map;
     }
-
-
 }
