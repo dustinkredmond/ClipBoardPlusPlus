@@ -27,4 +27,5 @@ public class MainMenuController {
         alert.setContentText(I18N.get("mi.help.content"));
         alert.showAndWait();
     }
+
 }

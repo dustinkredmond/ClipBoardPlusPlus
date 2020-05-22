@@ -108,4 +108,5 @@ public class ObjectTable<T> extends TableView<T> {
     public void excludeColumn(String name) {
         this.getColumns().removeIf(col -> col.getText().equals(name));
     }
+
 }

@@ -5,6 +5,7 @@ import com.dustinredmond.view.MainWindow;
 import javafx.scene.control.TextArea;
 
 public class CreateNewWindowController {
+    
     public void handleNew(TextArea taClip, TextArea taNotes) {
         ObjectTable<Clip> table = MainWindow.getTable();
 
@@ -14,4 +15,5 @@ public class CreateNewWindowController {
 
         table.getItems().add(clip);
     }
+
 }

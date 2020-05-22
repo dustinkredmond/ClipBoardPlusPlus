@@ -79,4 +79,5 @@ public class MainWindowController {
     private static final KeyCodeCombination copyCombination = new KeyCodeCombination(KeyCode.C, KeyCombination.CONTROL_ANY);
 
     private static final KeyCodeCombination pasteCombination = new KeyCodeCombination(KeyCode.V, KeyCodeCombination.CONTROL_ANY);
+
 }
