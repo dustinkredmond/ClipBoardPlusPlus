@@ -105,6 +105,10 @@ public class ObjectTable<T> extends TableView<T> {
         }
     }
 
+    /**
+     * Removes a column from the TableView using it's name
+     * @param name Name provided via column.getText method
+     */
     public void excludeColumn(String name) {
         this.getColumns().removeIf(col -> col.getText().equals(name));
     }
