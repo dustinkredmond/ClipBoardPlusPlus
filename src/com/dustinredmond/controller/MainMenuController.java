@@ -10,8 +10,8 @@ public class MainMenuController {
 
     public void showAboutInfo() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setGraphic(new ImageView("icons8-clipboard-64.png"));
-        ((Stage) alert.getDialogPane().getScene().getWindow()).getIcons().add(new Image("icons8-clipboard-64.png"));
+        alert.setGraphic(new ImageView(ICON));
+        ((Stage) alert.getDialogPane().getScene().getWindow()).getIcons().add(new Image(ICON));
         alert.setTitle(I18N.get("mi.about"));
         alert.setHeaderText(I18N.get("application.title"));
         alert.setContentText(I18N.get("mi.about.content"));
@@ -20,12 +20,14 @@ public class MainMenuController {
 
     public void showHelpInfo() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setGraphic(new ImageView("icons8-clipboard-64.png"));
-        ((Stage) alert.getDialogPane().getScene().getWindow()).getIcons().add(new Image("icons8-clipboard-64.png"));
+        alert.setGraphic(new ImageView(ICON));
+        ((Stage) alert.getDialogPane().getScene().getWindow()).getIcons().add(new Image(ICON));
         alert.setTitle(I18N.get("application.title"));
         alert.setHeaderText(I18N.get("application.title"));
         alert.setContentText(I18N.get("mi.help.content"));
         alert.showAndWait();
     }
+
+    private static final String ICON = "icons8-clipboard-64.png";
 
 }
