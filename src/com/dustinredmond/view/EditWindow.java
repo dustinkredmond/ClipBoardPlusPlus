@@ -21,6 +21,7 @@ public class EditWindow implements Window {
 
         if (table.getSelectionModel().isEmpty()) {
             // Can't edit with no selection, thus return
+            // handle here to avoid .size check in controllers
             return;
         }
 
