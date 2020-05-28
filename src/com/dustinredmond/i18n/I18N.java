@@ -73,7 +73,8 @@ public class I18N {
         map.put("mi.help", "Help");
 
         // About menu
-        map.put("mi.about.content", "ClipBoard++ is licensed under the GNU General Public License V3.0\n\n" +
+        map.put("mi.about.content", "ClipBoard++ is licensed under the GNU General Public License V3.0\n" +
+                "Clipboard icon by Icons8 | https://icons8.com/\n\n" +
                 "https://github.com/dustinkredmond/ClipBoardPlusPlus\nCreated: " +
                 "2020-05-20 by Dustin K. Redmond");
 
