@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class MainWindow implements Window {
@@ -45,9 +46,13 @@ public class MainWindow implements Window {
 
     private void createControls(GridPane grid, Scene scene) {
 
-        Button buttonNew = new Button(I18N.get("option.new"));
-        Button buttonEdit = new Button(I18N.get("option.edit"));
-        Button buttonDelete = new Button(I18N.get("option.delete"));
+        Button buttonNew = new Button("_"+I18N.get("option.new")); // add underscore for mnemonic parsing
+        Button buttonEdit = new Button("_"+I18N.get("option.edit"));
+        Button buttonDelete = new Button("_"+I18N.get("option.delete"));
+        for (Button button : Arrays.asList(buttonNew, buttonEdit, buttonDelete)) {
+            // enable mnemonic parsing e.g. (Alt + N) triggers buttonNew
+            button.setMnemonicParsing(true);
+        }
 
         HBox buttonBox = new HBox(10, buttonNew, buttonEdit, buttonDelete);
         grid.add(buttonBox, 0, 0);
