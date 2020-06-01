@@ -115,7 +115,6 @@ public class MainWindow implements Window {
     }
 
     public static ObjectTable<Clip> getTable() { return table; }
-
     private static final ObjectTable<Clip> table = new ObjectTable<>(Clip.class);
     private final MainWindowController controller = new MainWindowController();
 }
