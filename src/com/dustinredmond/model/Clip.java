@@ -6,11 +6,14 @@ import java.time.Instant;
 import java.util.Date;
 
 public class Clip implements Serializable {
+
     private final String created;
     private String clip;
     private String notes;
 
+    
     public Clip() {
+        // set cretaed time to time of object instantiation
         this.created = SDF.format(Date.from(Instant.now()));
         this.clip = "";
         this.notes = "";
