@@ -76,8 +76,23 @@ public class MainWindowController {
         return cm;
     }
 
+    public void applyClipboardPolling(ObjectTable<Clip> table) {
+        final Clipboard clipboard = Clipboard.getSystemClipboard();
+        new com.sun.glass.ui.ClipboardAssistance(com.sun.glass.ui.Clipboard.SYSTEM) {
+            @Override
+            public void contentChanged() {
+                // called every time system clipboard is changed
+                // if the clipboard has a new String, add it to the TableView
+                if (clipboard.hasString()) {
+                    Clip clip = new Clip();
+                    clip.setClip(clipboard.getString());
+                    table.getItems().add(clip);
+                }
+            }
+        };
+    }
+
     private static final KeyCodeCombination copyCombination = new KeyCodeCombination(KeyCode.C, KeyCombination.CONTROL_ANY);
 
     private static final KeyCodeCombination pasteCombination = new KeyCodeCombination(KeyCode.V, KeyCodeCombination.CONTROL_ANY);
-
 }
