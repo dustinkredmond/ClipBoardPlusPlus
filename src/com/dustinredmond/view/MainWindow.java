@@ -5,6 +5,8 @@ import com.dustinredmond.controller.MainWindowController;
 import com.dustinredmond.controller.ObjectTable;
 import com.dustinredmond.i18n.I18N;
 import com.dustinredmond.model.Clip;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -57,11 +59,37 @@ public class MainWindow implements Window {
         HBox buttonBox = new HBox(10, buttonNew, buttonEdit, buttonDelete);
         grid.add(buttonBox, 0, 0);
 
+// TODO: Add Search Field
+//        TextField textFieldSearch = new TextField();
+//        textFieldSearch.setPromptText("Search...");
+//        grid.add(textFieldSearch, 0, 1);
+
         table.excludeColumn("SDF"); // property SimpleDateFormat (not needed in model)
         table.setPlaceholder(new Label(I18N.get("table.empty")));
         table.setFixedCellSize(25);
         table.applyColumnNameMapping(getColumnMapping());
-        initializeItems();
+        ObservableList<Clip> savedData = getInitialItems();
+
+// TODO: Add search capability
+//        FilteredList<Clip> filteredList = new FilteredList<>(savedData, clip -> true);
+//        textFieldSearch.textProperty().addListener(((observable, oldValue, newValue) -> {
+//            filteredList.setPredicate(clip -> {
+//                if (newValue == null || newValue.isEmpty()) {
+//                    return true;
+//                }
+//                String filterText = newValue.toLowerCase();
+//                if (clip.getNotes().toLowerCase().contains(filterText)) {
+//                    return true;
+//                } else if (clip.getClip().toLowerCase().contains(filterText)) {
+//                    return true;
+//                }
+//                return false; // no matching predicate
+//            });
+//        }));
+//        SortedList<Clip> sortedList = new SortedList<>(filteredList);
+//        sortedList.comparatorProperty().bind(table.comparatorProperty());
+// NOTE SortedList will throw Exception when additional data is added
+        table.setItems(savedData);
 
         controller.applyCopyAction(scene);
         controller.applyPasteAction(scene);
@@ -78,17 +106,21 @@ public class MainWindow implements Window {
         grid.add(table, 0, 1);
     }
 
-    private void initializeItems() {
+    private ObservableList<Clip> getInitialItems() {
+
+        ObservableList<Clip> initialItems = FXCollections.observableArrayList();
+
         try {
             FileInputStream fis = new FileInputStream("clipboard++.history");
             ObjectInputStream ois = new ObjectInputStream(fis);
             Clip c;
             while ((c = (Clip) ois.readObject()) != null) {
-                table.getItems().add(c);
+                initialItems.add(c);
             }
         } catch (IOException | ClassNotFoundException ignored) {
             // no big deal if we can't recover previous objects/history
         }
+        return initialItems;
     }
 
     private HashMap<String,String> getColumnMapping() {

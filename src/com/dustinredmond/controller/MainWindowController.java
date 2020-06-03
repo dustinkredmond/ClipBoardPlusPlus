@@ -8,7 +8,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.input.*;
-import javafx.stage.Stage;
 
 public class MainWindowController {
 
