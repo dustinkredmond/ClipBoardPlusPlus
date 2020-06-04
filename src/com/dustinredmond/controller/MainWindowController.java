@@ -75,7 +75,8 @@ public class MainWindowController {
         return cm;
     }
 
-    public void applyClipboardPolling(ObjectTable<Clip> table) {
+    public void applyClipboardPolling() {
+        ObjectTable<Clip> table = MainWindow.getTable();
         final Clipboard clipboard = Clipboard.getSystemClipboard();
         new com.sun.glass.ui.ClipboardAssistance(com.sun.glass.ui.Clipboard.SYSTEM) {
             @Override
@@ -83,9 +84,23 @@ public class MainWindowController {
                 // called every time system clipboard is changed
                 // if the clipboard has a new String, add it to the TableView
                 if (clipboard.hasString()) {
-                    Clip clip = new Clip();
-                    clip.setClip(clipboard.getString());
-                    table.getItems().add(clip);
+                    String toBeCopied = clipboard.getString();
+                    // If the user hasn't selected anything in the table, we can safely add item
+                    // If the user has selected something, and the selected clip different from
+                    // the String being copied, then we can add it.
+                    if (table.getSelectionModel().isEmpty()
+                            || !table.getSelectionModel().getSelectedItem().getClip().equals(toBeCopied)) {
+                        Clip clip = new Clip();
+                        clip.setClip(clipboard.getString());
+                        Clip lastCopied = (table.getItems().size() > 1) ? table.getItems().get(table.getItems().size() - 1) : null;
+                        if (lastCopied != null && lastCopied.getClip().equals(toBeCopied)) {
+                            // sometimes the contentChanged() method is called without the
+                            // content actually having changed, this ensures that the most
+                            // recently copied String isn't duplicated
+                            return;
+                        }
+                        table.getItems().add(clip);
+                    }
                 }
             }
         };
