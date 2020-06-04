@@ -70,9 +70,14 @@ public class I18N {
         map.put("table.notes", "Notes");
         map.put("table.empty", "No clipboard items saved. Either add with \"New\" button, or Paste (Ctrl+V) into table.");
 
+        // Menu Names
+        map.put("menu.about", "About");
+        map.put("menu.options", "Options");
+
         // MenuItems
         map.put("mi.about", "About this program");
         map.put("mi.help", "Help");
+        map.put("mi.alwaysOnTop", "Set always on top");
 
         // About menu
         map.put("mi.about.content", "ClipBoard++ is licensed under the GNU General Public License V3.0\n" +

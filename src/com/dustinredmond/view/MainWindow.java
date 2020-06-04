@@ -89,6 +89,7 @@ public class MainWindow implements Window {
 //        SortedList<Clip> sortedList = new SortedList<>(filteredList);
 //        sortedList.comparatorProperty().bind(table.comparatorProperty());
 // NOTE SortedList will throw Exception when additional data is added
+//      Maybe try table.setItems() each time, fairly large refactor
         table.setItems(savedData);
 
         controller.applyCopyAction(scene);
@@ -135,7 +136,13 @@ public class MainWindow implements Window {
     private MenuBar getMainMenu() {
         MenuBar menuBar = new MenuBar();
 
-        Menu menuAbout = new Menu("About");
+        Menu menuOptions = new Menu(I18N.get("menu.options"));
+        CheckMenuItem miAlwaysOnTop = new CheckMenuItem(I18N.get("mi.alwaysOnTop"));
+        miAlwaysOnTop.setOnAction(e -> UI.getStage().setAlwaysOnTop(miAlwaysOnTop.isSelected()));
+        menuOptions.getItems().add(miAlwaysOnTop);
+        menuBar.getMenus().add(menuOptions);
+
+        Menu menuAbout = new Menu(I18N.get("menu.about"));
         MenuItem menuItemAbout = new MenuItem(I18N.get("mi.about"));
         menuItemAbout.setOnAction(e -> new MainMenuController().showAboutInfo());
         MenuItem menuItemHelp = new MenuItem(I18N.get("mi.help"));
