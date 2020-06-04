@@ -95,7 +95,7 @@ public class MainWindow implements Window {
         controller.applyPasteAction(scene);
         controller.applyEditAction();
         controller.applyContextMenu();
-        controller.applyClipboardPolling(table);
+        controller.applyClipboardPolling();
         buttonDelete.setOnAction(e -> controller.handleDelete(table));
         buttonEdit.setOnAction(e -> new EditWindow().show());
         buttonNew.setOnAction(e -> new CreateNewWindow().show());
