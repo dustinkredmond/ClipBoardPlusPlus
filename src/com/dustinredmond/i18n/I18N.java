@@ -48,7 +48,8 @@ public class I18N {
         map.put("option.new", "New");
         map.put("option.edit", "Edit");
         map.put("option.delete", "Delete");
-        map.put("application.exit", "Are you sure you wish to exit?");
+        map.put("application.exit", "ClipBoard++ will not save clipboard history when closed. " +
+                "Are you sure you wish to exit?");
 
         // CreateNewWindow
         map.put("new.contents", "Clipboard Contents:");
