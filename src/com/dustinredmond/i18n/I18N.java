@@ -48,6 +48,7 @@ public class I18N {
         map.put("option.new", "New");
         map.put("option.edit", "Edit");
         map.put("option.delete", "Delete");
+        map.put("application.exit", "Are you sure you wish to exit?");
 
         // CreateNewWindow
         map.put("new.contents", "Clipboard Contents:");
@@ -78,6 +79,7 @@ public class I18N {
         map.put("mi.about", "About this program");
         map.put("mi.help", "Help");
         map.put("mi.alwaysOnTop", "Set always on top");
+        map.put("mi.exit", "Exit");
 
         // About menu
         map.put("mi.about.content", "ClipBoard++ is licensed under the GNU General Public License V3.0\n" +

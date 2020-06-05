@@ -5,6 +5,8 @@ import com.dustinredmond.controller.MainWindowController;
 import com.dustinredmond.controller.ObjectTable;
 import com.dustinredmond.i18n.I18N;
 import com.dustinredmond.model.Clip;
+import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -16,25 +18,29 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Optional;
 
 public class MainWindow implements Window {
     @Override
     public void show() {
 
         Stage stage = UI.getStage();
+        stage.setOnCloseRequest(this::handleClose);
         stage.getIcons().add(new Image("icons8-clipboard-64.png"));
         stage.setTitle(I18N.get("application.title"));
 
         BorderPane root = new BorderPane();
         GridPane grid = new GridPane();
         root.setCenter(grid);
-        root.setTop(getMainMenu());
+        root.setTop(getMainMenu(stage));
         grid.setPadding(new Insets(10));
         grid.setVgap(10);
         grid.setHgap(10);
@@ -44,6 +50,21 @@ public class MainWindow implements Window {
 
         stage.setScene(scene);
         stage.show();
+    }
+
+    private void handleClose(WindowEvent e) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, I18N.get("application.exit"));
+        alert.setHeaderText(null);
+        alert.setTitle(I18N.get("application.title"));
+        ((Stage) alert.getDialogPane().getScene().getWindow()).getIcons().add(new Image("icons8-clipboard-64.png"));
+        alert.getButtonTypes().clear();
+        alert.getButtonTypes().addAll(ButtonType.YES, ButtonType.NO);
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get().equals(ButtonType.YES)) {
+            Platform.exit();
+        } else {
+            e.consume();
+        }
     }
 
     private void createControls(GridPane grid, Scene scene) {
@@ -133,7 +154,7 @@ public class MainWindow implements Window {
         return map;
     }
 
-    private MenuBar getMainMenu() {
+    private MenuBar getMainMenu(Stage stage) {
         MenuBar menuBar = new MenuBar();
 
         Menu menuOptions = new Menu(I18N.get("menu.options"));
