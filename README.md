@@ -8,6 +8,10 @@ never accidentally overwrite anything that you copy.
 
 **If you're on Windows 10, an installer is available [here](./installer/clipboard++_setup_win10_64-bit.exe).**
 
+**If you're on a 64-bit Linux, we also include a compiled jar in `./installer` for your convenience.**
+
+**If you're on MacOS, sorry, I'm not maintaining another build. Just build from source.**
+
 #### Screenshots
 ![screenshot1](./img/ClipBoard++(1).png)
 
