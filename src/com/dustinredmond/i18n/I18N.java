@@ -89,8 +89,8 @@ public class I18N {
                 "2020-05-20 by Dustin K. Redmond");
 
         // Help menu
-        map.put("mi.help.content", "ClipBoard++ is created in such a way that its use should be very straightforward. " +
-                "If you run into any issues, please file an Issue or submit a Pull Request on the GitHub page.\n" +
+        map.put("mi.help.content", "ClipBoard++ is created in such a way that its use\n should be very straightforward. \n" +
+                "If you run into any issues, please file an \nIssue or submit a Pull Request on the GitHub page.\n" +
                 "\nhttps://github.com/dustinkredmond/ClipBoardPlusPlus");
         return map;
     }
