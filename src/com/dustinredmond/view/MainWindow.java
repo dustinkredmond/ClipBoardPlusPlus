@@ -80,37 +80,11 @@ public class MainWindow implements Window {
         HBox buttonBox = new HBox(10, buttonNew, buttonEdit, buttonDelete);
         grid.add(buttonBox, 0, 0);
 
-// TODO: Add Search Field
-//        TextField textFieldSearch = new TextField();
-//        textFieldSearch.setPromptText("Search...");
-//        grid.add(textFieldSearch, 0, 1);
-
         table.excludeColumn("SDF"); // property SimpleDateFormat (not needed in model)
         table.setPlaceholder(new Label(I18N.get("table.empty")));
         table.setFixedCellSize(25);
         table.applyColumnNameMapping(getColumnMapping());
         ObservableList<Clip> savedData = getInitialItems();
-
-// TODO: Add search capability
-//        FilteredList<Clip> filteredList = new FilteredList<>(savedData, clip -> true);
-//        textFieldSearch.textProperty().addListener(((observable, oldValue, newValue) -> {
-//            filteredList.setPredicate(clip -> {
-//                if (newValue == null || newValue.isEmpty()) {
-//                    return true;
-//                }
-//                String filterText = newValue.toLowerCase();
-//                if (clip.getNotes().toLowerCase().contains(filterText)) {
-//                    return true;
-//                } else if (clip.getClip().toLowerCase().contains(filterText)) {
-//                    return true;
-//                }
-//                return false; // no matching predicate
-//            });
-//        }));
-//        SortedList<Clip> sortedList = new SortedList<>(filteredList);
-//        sortedList.comparatorProperty().bind(table.comparatorProperty());
-// NOTE SortedList will throw Exception when additional data is added
-//      Maybe try table.setItems() each time, fairly large refactor
         table.setItems(savedData);
 
         controller.applyCopyAction(scene);
@@ -171,7 +145,6 @@ public class MainWindow implements Window {
         menuAbout.getItems().addAll(menuItemAbout, menuItemHelp);
 
         menuBar.getMenus().add(menuAbout);
-
         return menuBar;
     }
 
