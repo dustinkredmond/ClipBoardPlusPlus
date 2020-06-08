@@ -4,9 +4,12 @@ import com.dustinredmond.controller.ObjectTable;
 import com.dustinredmond.i18n.I18N;
 import com.dustinredmond.model.Clip;
 import javafx.application.Application;
-import javafx.scene.control.Alert;
+import javafx.geometry.Insets;
+import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.FileOutputStream;
@@ -22,7 +25,7 @@ public class UI extends Application {
         UI.stage = stage;
         stage.getIcons().add(new Image("icons8-clipboard-64.png"));
         new MainWindow().show();
-        //Preferences.userRoot().remove("ClipBoard++"); // uncomment to test first run behavior
+        Preferences.userRoot().remove("ClipBoard++"); // uncomment to test first run behavior
         showDialogOnFirstRun();
     }
 
@@ -46,13 +49,20 @@ public class UI extends Application {
 
     private void showDialogOnFirstRun() {
         if (Preferences.userRoot().get("ClipBoard++","").isEmpty()) { // checks if application is first use
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setGraphic(new ImageView("icons8-clipboard-64.png"));
-            ((Stage) alert.getDialogPane().getScene().getWindow()).getIcons().add(new Image("icons8-clipboard-64.png"));
-            alert.setHeaderText(I18N.get("application.greeting"));
-            alert.setTitle(I18N.get("application.title"));
-            alert.setContentText(I18N.get("application.welcome"));
-            alert.show();
+            Stage stage = new Stage();
+            stage.getIcons().add(new Image("icons8-clipboard-64.png"));
+            stage.requestFocus();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle(I18N.get("application.title"));
+            GridPane grid = new GridPane();
+            grid.setHgap(5);
+            grid.setVgap(25);
+            grid.setPadding(new Insets(25));
+            grid.add(new Text(I18N.get("applicaton.greeting")), 0, 0);
+            grid.add(new Text(I18N.get("application.welcome")), 0, 1);
+            stage.setScene(new Scene(grid));
+            stage.sizeToScene();
+            stage.show();
             Preferences.userRoot().put("ClipBoard++", "launched");
         }
     }

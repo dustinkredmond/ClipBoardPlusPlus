@@ -36,11 +36,11 @@ public class I18N {
         map.put("application.title", "ClipBoard++");
         map.put("application.greeting", "Welcome to ClipBoard++");
         map.put("application.welcome", "" +
-                "Thanks for using ClipBoard++. It looks like this is your first time using the application. " +
-                "To get started, you can add a new clip via the \"New\" button. As long as the application " +
-                "remains open, ClipBoard++ will run in the background and each time you use the system clipboard, " +
+                "Thanks for using ClipBoard++. It looks like this is your first time using the application.\n" +
+                "To get started, you can add a new clip via the \"New\" button. As long as the application\n" +
+                "remains open, ClipBoard++ will run in the background and each time you use the system clipboard,\n" +
                 "the text will be automatically added to the ClipBoard++ table. " +
-                "Clips can be copied again later via Ctrl+C or by double clicking the table item." +
+                "Clips can be copied\nagain later via Ctrl+C or by double clicking the table item." +
                 "\n\n\n" +
                 "https://github.com/dustinkredmond/ClipBoardPlusPlus\n" +
                 "Created By: Dustin K. Redmond\n" +
