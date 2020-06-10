@@ -23,6 +23,10 @@ public class MainWindowController {
     }
 
     public void applyPasteAction(Scene scene) {
+        // Since we implemented copy, let's implement paste as well
+        // ClipBoard++ should have already added whatever was copy, but
+        // user may want to paste something on application open that wasn't
+        // in the ClipBoard++ table
         ObjectTable<Clip> table = MainWindow.getTable();
         scene.getAccelerators().put(pasteCombination, () -> {
             String clipboardContents = Clipboard.getSystemClipboard().getString();
@@ -42,6 +46,7 @@ public class MainWindowController {
     public void applyEditAction() {
         ObjectTable<Clip> table = MainWindow.getTable();
         table.setOnMouseClicked(e -> {
+            // if double click and table item is selected
             if (e.getClickCount() == 2 && !table.getSelectionModel().isEmpty()) { // double click
                 new EditWindow().show();
             }
@@ -58,6 +63,8 @@ public class MainWindowController {
                         cm.show(table, e.getScreenX(), e.getScreenY());
                     }
                 } else {
+                    // otherwise multiple context menus can be opened
+                    // by multiple right-click actions
                     cm.hide();
                 }
             }
@@ -86,7 +93,8 @@ public class MainWindowController {
                 if (clipboard.hasString()) {
                     String toBeCopied = clipboard.getString();
                     // If the user hasn't selected anything in the table, we can safely add item
-                    // If the user has selected something, and the selected clip different from
+                    //
+                    // If the user has selected something, and the selected clip differs from
                     // the String being copied, then we can add it.
                     if (table.getSelectionModel().isEmpty()
                             || !table.getSelectionModel().getSelectedItem().getClip().equals(toBeCopied)) {
@@ -95,8 +103,7 @@ public class MainWindowController {
                         Clip lastCopied = (table.getItems().size() > 1) ? table.getItems().get(table.getItems().size() - 1) : null;
                         if (lastCopied != null && lastCopied.getClip().equals(toBeCopied)) {
                             // sometimes the contentChanged() method is called without the
-                            // content actually having changed, this ensures that the most
-                            // recently copied String isn't duplicated
+                            // content actually having changed, don't add in this case
                             return;
                         }
                         table.getItems().add(clip);
@@ -106,6 +113,8 @@ public class MainWindowController {
         };
     }
 
+    // TODO: Does this hold true for MacOS??? Is there a KeyCode.COMMAND_ANY
+    // or something similar for alternate keyboard/OS
     private static final KeyCodeCombination copyCombination = new KeyCodeCombination(KeyCode.C, KeyCombination.CONTROL_ANY);
 
     private static final KeyCodeCombination pasteCombination = new KeyCodeCombination(KeyCode.V, KeyCodeCombination.CONTROL_ANY);
