@@ -7,6 +7,8 @@ Effectively, ClipBoard++ is a clipboard history manager, ensuring that you
 never accidentally overwrite anything that you copy.
 
 **If you're on Windows 10, an installer is available [here](./installer/clipboard++_setup_win10_64-bit.exe).**
+*** Keep in mind, I'll only update this periodically as it takes some time to wrap the JAR file, 
+build the installer, add the icons and such. If you want the latest, please build from source. ***
 
 **If you're on a 64-bit Linux, we also include a compiled jar in `./installer` for your convenience.**
 
