@@ -19,5 +19,4 @@ build the installer, add the icons and such. If you want the latest, please buil
 
 ![screenshot2](./img/ClipBoard++(2).png)
 
-Note: ClipBoard++ makes no use of C++, the name simply implies a Clipboard better than
-the system clipboard.
+Note: ClipBoard++ makes no use of C++, the name simply implies a Clipboard a step above the system clipboard.
