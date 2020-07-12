@@ -12,7 +12,7 @@ build the installer, add the icons and such. If you want the latest, please buil
 
 **If you're on a 64-bit Linux, we also include a compiled jar in `./installer` for your convenience.**
 
-**If you're on MacOS, sorry, I'm not maintaining another build. Just build from source.**
+**If you're on MacOS, sorry, I'm not maintaining another build. Just build from source, or try to run the JAR file directly, there shouldn't be any issues.**
 
 #### Screenshots
 ![screenshot1](./img/ClipBoard++(1).png)
